@@ -3,7 +3,6 @@ public class Edge {
     private Vertex from = null;
     private Vertex to = null;
     private double weight;
-    private Color color = Color.GREY;
 
     public double getWeight () {
         return weight;
@@ -21,8 +20,12 @@ public class Edge {
         weight = 1.0;
     }
 
-    public void setColor(Color c){
-        this.color = c;
+    public Vertex getFrom() {
+        return from;
+    }
+
+    public Vertex getTo() {
+        return to;
     }
 }
 

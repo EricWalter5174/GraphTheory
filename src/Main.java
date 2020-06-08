@@ -8,7 +8,9 @@ public class Main {
         File file = new File("res/tinyEWG.txt");
         Graph graph = new Graph();
         graph.readFile(file);
-        graph.sortEdgesByWeight();
+        Kruskal kruskal = new Kruskal();
+        kruskal.printGraph(kruskal.kruskal(graph));
+
 
     }
 }

@@ -2,14 +2,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Locale;
 import java.util.Scanner;
 
 public class Graph {
-    private int numberOfVertices = 0;
-    private int numberOfEdges = 0;
-    private ArrayList<Vertex> vertices = new ArrayList<>();
-    private ArrayList<Edge> edges = new ArrayList<>();
+    protected int numberOfVertices = 0;
+    protected int numberOfEdges = 0;
+    protected ArrayList<Vertex> vertices = new ArrayList<>();
+    protected ArrayList<Edge> edges = new ArrayList<>();
 
     public void readFile(File file) throws FileNotFoundException {
         Scanner reader = new Scanner(new FileReader(file)).useLocale(Locale.US);
@@ -42,7 +43,7 @@ public class Graph {
         return null;
     }
 
-    public void sortEdgesByWeight(){
+/*    public void sortEdgesByWeight(){
         ArrayList<Edge> temp = new ArrayList<>();
 
         for(int i= 0; i < numberOfEdges; i++) {
@@ -64,7 +65,7 @@ public class Graph {
             }
         }
         return indexOflowestWeight;
-    }
+    }*/
 
     public Edge getEdgeByIndex(int index){
         return edges.get(index);
