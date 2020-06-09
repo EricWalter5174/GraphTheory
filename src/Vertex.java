@@ -14,6 +14,7 @@ public class Vertex {
     }
 
     public Vertex(int id, double d) {
+        this.id = id;
         dist = d; // INFINITY
         prev = null;
         visited = false;
@@ -44,8 +45,8 @@ public class Vertex {
         this.id = id;
     }
 
-    public void setNeighbors(List<Edge> neighbors) {
-        this.neighbors = neighbors;
+    public void addNeighbor(Edge e) {
+        neighbors.add(e);
     }
 
     public void setVisited(boolean visited) {

@@ -1,43 +1,37 @@
 
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Queue;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.*;
 
 class DiGraph extends Graph{
 
-    public   Map<Integer,Vertex> vertices = new HashMap<> ();
+    public Map<Integer,Vertex> vertices = new HashMap<> ();
 
-    public boolean BFS(Integer from, Integer to, int max) {
-        for(Vertex u : vertices.values()) {
-            u.setPrev(null);
-            u.setVisited(false);
-            u.setDist(0.0);
+    @Override
+    public void readFile(File file) throws FileNotFoundException {
+        Scanner reader = new Scanner(new FileReader(file)).useLocale(Locale.US);
+        numberOfVertices = reader.nextInt();
+        numberOfEdges = reader.nextInt();
+        ArrayList<Integer> addedVertices = new ArrayList<>();
+
+        while (reader.hasNext()) {
+            int tempFrom = reader.nextInt();
+            int tempTo = reader.nextInt();
+            double tempWeight = reader.nextDouble();
+            if (!addedVertices.contains(tempFrom)) {
+                vertices.put(tempFrom, new Vertex(tempFrom, tempWeight));
+                addedVertices.add(tempFrom);
+            }
+            if (!addedVertices.contains(tempTo)) {
+                vertices.put(tempTo, new Vertex(tempTo, tempWeight));
+                addedVertices.add(tempTo);
+            }
+            Edge tempEdge = new Edge(getVertexById(tempFrom), getVertexById(tempTo), tempWeight);
+            edges.add(tempEdge);
+            vertices.get(tempFrom).addNeighbor(tempEdge);
         }
-        vertices.get(from).setPrev(null);
-        vertices.get(from).setVisited(true);
-        Queue<Vertex> q = new LinkedList<>();
-        q.add(vertices.get(from));
 
-        while(!q.isEmpty()) {
-            Vertex u = q.poll();
-            if(u.getDist() > max) {
-                return false;
-            }
-            if(u == vertices.get(to)) {
-                return true;
-            }
-            for(Edge v : u.getNeighbors()) {
-                if(v.getTo().getVisited() == false) {
-                    v.getTo().setVisited(true);
-                    v.getTo().setPrev(u);
-                    v.getTo().setDist(u.getDist()+1);
-                    q.add(v.getTo());
-                }
-            }
-
-        }
-        return false;
     }
 
 }

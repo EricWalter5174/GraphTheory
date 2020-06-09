@@ -106,12 +106,4 @@ public class MinPQ {
         }
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for(Vertex v : e){
-            sb.append(v.toString());
-        }
-        return sb.toString();
-    }
 }

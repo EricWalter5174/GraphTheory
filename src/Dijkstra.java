@@ -9,7 +9,7 @@ public class Dijkstra {
 
     public MinPQ getShortestPath(DiGraph graph, Vertex start){
         MinPQ pq = new MinPQ(graph.getNumberOfVertices());
-        for(Vertex v : graph.vertices.values()){
+        for(Vertex v : graph.getVertices()){
             v.setVisited(false);
             v.setPrev(null);
             v.setDist(INFINITY);
@@ -19,9 +19,9 @@ public class Dijkstra {
             pq.insert(v);
         }
         while (!(pq.isEmpty())){
-            Vertex u= pq.extractElement();
+            Vertex u = pq.extractElement();
             u.setVisited(true);
-            for (Edge k: u.getNeighbors()){
+            for (Edge k : u.getNeighbors()){
                 Vertex v = k.getTo();
                 if(v.getVisited() == false && v.getDist() > u.getDist() + k.getWeight()){
                     v.setDist(u.getDist() + k.getWeight());

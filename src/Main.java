@@ -5,12 +5,14 @@ import java.io.FileReader;
 public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
-        File file = new File("res/tinyEWG.txt");
+        File fileTinyEWG = new File("res/tinyEWG.txt");
+        File fileTinyFN = new File("res/tinyFN.txt");
+
         DiGraph diGraph = new DiGraph();
         Graph graph = new Graph();
-        diGraph.readFile(file);
+        diGraph.readFile(fileTinyFN);
         Dijkstra dijkstra = new Dijkstra();
-        System.out.println(dijkstra.getShortestPath(diGraph, diGraph.getVertexById(0)).toString());
+        dijkstra.getShortestPath(diGraph, diGraph.getVertexById(0));
 
         /*Kruskal kruskal = new Kruskal();
         kruskal.printGraph(kruskal.kruskal(graph));*/

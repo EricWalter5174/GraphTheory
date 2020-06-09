@@ -2,7 +2,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Locale;
 import java.util.Scanner;
 
