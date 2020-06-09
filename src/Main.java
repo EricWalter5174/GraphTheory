@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Scanner;
 
 public class Main {
 
@@ -13,15 +14,40 @@ public class Main {
 
         DiGraph diGraph = new DiGraph();
         diGraph.readFile(fileTinyFN);
-        graph.readFile(fileTinyEWG);
 
-        System.out.println("Dijkstra's algorithm:\n");
-        Dijkstra dijkstra = new Dijkstra();
-        System.out.println(dijkstra.getShortestPath(diGraph).toString());
+        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Kruskal's algorithm:\n");
-        Kruskal kruskal = new Kruskal();
-        kruskal.printGraph(kruskal.kruskal(graph));
+        int userInput = 0;
+        while(userInput != 9) {
+            System.out.println("\nPlease choose an algorithm:" +
+                    "\n(1) Kruskal's Algorithm" +
+                    "\n(2) Dijkstra's Algorithm" +
+                    "\n(9) Exit");
+
+            userInput = scanner.nextInt();
+
+            switch(userInput){
+                case 1:
+                    System.out.println("Kruskal's algorithm:\n");
+                    Kruskal kruskal = new Kruskal();
+                    kruskal.printGraph(kruskal.kruskal(graph));
+                    break;
+                case 2:
+                    System.out.println("Dijkstra's algorithm:\n");
+                    Dijkstra dijkstra = new Dijkstra();
+                    System.out.println(dijkstra.getShortestPath(diGraph).toString());
+                    break;
+                case 9:
+
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
+
+
 
     }
 }
