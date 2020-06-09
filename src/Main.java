@@ -8,17 +8,20 @@ public class Main {
         File fileTinyEWG = new File("res/tinyEWG.txt");
         File fileTinyFN = new File("res/tinyFN.txt");
 
-        DiGraph diGraph = new DiGraph();
         Graph graph = new Graph();
+        graph.readFile(fileTinyEWG);
+
+        DiGraph diGraph = new DiGraph();
         diGraph.readFile(fileTinyFN);
         graph.readFile(fileTinyEWG);
 
+        System.out.println("Dijkstra's algorithm:\n");
         Dijkstra dijkstra = new Dijkstra();
-        dijkstra.getShortestPath(diGraph, diGraph.vertexMap.get(0));
+        System.out.println(dijkstra.getShortestPath(diGraph).toString());
 
-//        Kruskal kruskal = new Kruskal();
-//        kruskal.printGraph(kruskal.kruskal(graph));
-
-
+        System.out.println("Kruskal's algorithm:\n");
+        Kruskal kruskal = new Kruskal();
+        kruskal.printGraph(kruskal.kruskal(graph));
+        
     }
 }

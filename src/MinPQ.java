@@ -27,9 +27,7 @@ public class MinPQ {
         upheap(currentsize);
         return true;
     }
-    public boolean insert(int i, double p) {
-        return insert(new Vertex(i,p));
-    }
+
     public Vertex extractElement() {
         if(isEmpty()) {
             System.out.println("heap underflow");
@@ -104,6 +102,13 @@ public class MinPQ {
         if(n < prio) {
             upheap(i);
         }
+    }
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        for(Vertex v : e){
+            sb.append(v.toString());
+        }
+        return sb.toString();
     }
 
 }
