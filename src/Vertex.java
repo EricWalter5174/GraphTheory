@@ -63,10 +63,8 @@ public class Vertex {
 
     @Override
     public String toString() {
-        return "Vertex{" +
-                "id=" + id +
-                ", prev=" + prev +
-                ", dist=" + dist +
-                '}';
+        return id +
+                ", Distance= " + dist +
+                '\n';
     }
 }

@@ -27,14 +27,11 @@ class DiGraph extends Graph{
                 vertexMap.put(tempTo, new Vertex(tempTo, tempWeight));
                 addedVertices.add(tempTo);
             }
-            Edge tempEdge = new Edge(getVertexById(tempFrom), getVertexById(tempTo), tempWeight);
+            Edge tempEdge = new Edge(vertexMap.get(tempFrom), vertexMap.get(tempTo), tempWeight);
             edges.add(tempEdge);
             vertexMap.get(tempFrom).addNeighbor(tempEdge);
+
         }
 
-    }
-
-    public Map<Integer, Vertex> getVertexMap() {
-        return vertexMap;
     }
 }
