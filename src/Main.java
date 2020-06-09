@@ -12,7 +12,7 @@ public class Main {
         Graph graph = new Graph();
         diGraph.readFile(fileTinyFN);
         Dijkstra dijkstra = new Dijkstra();
-        dijkstra.getShortestPath(diGraph, diGraph.getVertexById(0));
+        dijkstra.getShortestPath(diGraph, diGraph.vertexMap.get(0));
 
         /*Kruskal kruskal = new Kruskal();
         kruskal.printGraph(kruskal.kruskal(graph));*/

@@ -6,7 +6,7 @@ import java.util.*;
 
 class DiGraph extends Graph{
 
-    public Map<Integer,Vertex> vertices = new HashMap<> ();
+    public Map<Integer,Vertex> vertexMap = new HashMap<>();
 
     @Override
     public void readFile(File file) throws FileNotFoundException {
@@ -20,18 +20,21 @@ class DiGraph extends Graph{
             int tempTo = reader.nextInt();
             double tempWeight = reader.nextDouble();
             if (!addedVertices.contains(tempFrom)) {
-                vertices.put(tempFrom, new Vertex(tempFrom, tempWeight));
+                vertexMap.put(tempFrom, new Vertex(tempFrom, tempWeight));
                 addedVertices.add(tempFrom);
             }
             if (!addedVertices.contains(tempTo)) {
-                vertices.put(tempTo, new Vertex(tempTo, tempWeight));
+                vertexMap.put(tempTo, new Vertex(tempTo, tempWeight));
                 addedVertices.add(tempTo);
             }
             Edge tempEdge = new Edge(getVertexById(tempFrom), getVertexById(tempTo), tempWeight);
             edges.add(tempEdge);
-            vertices.get(tempFrom).addNeighbor(tempEdge);
+            vertexMap.get(tempFrom).addNeighbor(tempEdge);
         }
 
     }
 
+    public Map<Integer, Vertex> getVertexMap() {
+        return vertexMap;
+    }
 }

@@ -1,19 +1,14 @@
-import java.lang.reflect.Array;
-import java.util.PriorityQueue;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class Dijkstra {
     public static final double INFINITY = Double.MAX_VALUE;
 
     public MinPQ getShortestPath(DiGraph graph, Vertex start){
         MinPQ pq = new MinPQ(graph.getNumberOfVertices());
-        for(Vertex v : graph.getVertices()){
+        for(Vertex v : graph.vertexMap.values()){
             v.setVisited(false);
             v.setPrev(null);
             v.setDist(INFINITY);
-            if(v == graph.vertices.get(start)){
+            if(v.getId() == graph.vertexMap.get(start).getId()){
                 v.setDist(0);
             }
             pq.insert(v);
