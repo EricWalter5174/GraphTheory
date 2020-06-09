@@ -11,11 +11,13 @@ public class Main {
         DiGraph diGraph = new DiGraph();
         Graph graph = new Graph();
         diGraph.readFile(fileTinyFN);
+        graph.readFile(fileTinyEWG);
+
         Dijkstra dijkstra = new Dijkstra();
         dijkstra.getShortestPath(diGraph, diGraph.vertexMap.get(0));
 
-        /*Kruskal kruskal = new Kruskal();
-        kruskal.printGraph(kruskal.kruskal(graph));*/
+//        Kruskal kruskal = new Kruskal();
+//        kruskal.printGraph(kruskal.kruskal(graph));
 
 
     }

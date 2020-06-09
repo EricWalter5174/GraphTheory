@@ -19,6 +19,7 @@ class DiGraph extends Graph{
             int tempFrom = reader.nextInt();
             int tempTo = reader.nextInt();
             double tempWeight = reader.nextDouble();
+            Edge tempEdge;
             if (!addedVertices.contains(tempFrom)) {
                 vertexMap.put(tempFrom, new Vertex(tempFrom, tempWeight));
                 addedVertices.add(tempFrom);
@@ -27,7 +28,7 @@ class DiGraph extends Graph{
                 vertexMap.put(tempTo, new Vertex(tempTo, tempWeight));
                 addedVertices.add(tempTo);
             }
-            Edge tempEdge = new Edge(getVertexById(tempFrom), getVertexById(tempTo), tempWeight);
+            tempEdge = new Edge(getVertexById(tempFrom), getVertexById(tempTo), tempWeight);
             edges.add(tempEdge);
             vertexMap.get(tempFrom).addNeighbor(tempEdge);
         }
