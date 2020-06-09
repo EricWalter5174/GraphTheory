@@ -1,30 +1,43 @@
-public class DiGraph {
-    int vertices;
-    double matrix[][];
 
-    public DiGraph(int vertex) {
-        this.vertices = vertex;
-        matrix = new double[vertex][vertex];
-    }
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Queue;
 
-    public void addEdge(int source, int destination, double weight) {
-        //add edge
-        matrix[source][destination] = weight;
+class DiGraph extends Graph{
 
-        //add back edge for undirected graph
-        matrix[destination][source] = weight;
-    }
+    public   Map<Integer,Vertex> vertices = new HashMap<> ();
 
-    //get the vertex with minimum distance which is not included in SPT
-    int getMinimumVertex(boolean[] mst, double[] key) {
-        double minKey = Double.MAX_VALUE;
-        int vertex = -1;
-        for (int i = 0; i < vertices; i++) {
-            if (mst[i] == false && minKey > key[i]) {
-                minKey = key[i];
-                vertex = i;
-            }
+    public boolean BFS(Integer from, Integer to, int max) {
+        for(Vertex u : vertices.values()) {
+            u.setPrev(null);
+            u.setVisited(false);
+            u.setDist(0.0);
         }
-        return vertex;
+        vertices.get(from).setPrev(null);
+        vertices.get(from).setVisited(true);
+        Queue<Vertex> q = new LinkedList<>();
+        q.add(vertices.get(from));
+
+        while(!q.isEmpty()) {
+            Vertex u = q.poll();
+            if(u.getDist() > max) {
+                return false;
+            }
+            if(u == vertices.get(to)) {
+                return true;
+            }
+            for(Edge v : u.getNeighbors()) {
+                if(v.getTo().getVisited() == false) {
+                    v.getTo().setVisited(true);
+                    v.getTo().setPrev(u);
+                    v.getTo().setDist(u.getDist()+1);
+                    q.add(v.getTo());
+                }
+            }
+
+        }
+        return false;
     }
+
 }

@@ -1,41 +1,36 @@
+import java.lang.reflect.Array;
+import java.util.PriorityQueue;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
-import java.util.PriorityQueue;
 
 public class Dijkstra {
+    public static final double INFINITY = Double.MAX_VALUE;
 
-    public void computePath(Vertex sourceVertex) {
-        sourceVertex.setMinDistance(0);
-        PriorityQueue<Vertex> priorityQueue = new PriorityQueue<>();
-        priorityQueue.add(sourceVertex);
-
-        while (!priorityQueue.isEmpty()) {
-            Vertex vertex = priorityQueue.poll();
-
-            for (Edge edge : vertex.getEdges()) {
-                Vertex v = edge.getTo();
-                double weight = edge.getWeight();
-                double minDistance = vertex.getMinDistance() + weight;
-
-                if (minDistance < v.getMinDistance()) {
-                    priorityQueue.remove(vertex);
-                    v.setPreviosVertex(vertex);
-                    v.setMinDistance(minDistance);
-                    priorityQueue.add(v);
+    public MinPQ getShortestPath(DiGraph graph, Vertex start){
+        MinPQ pq = new MinPQ(graph.getNumberOfVertices());
+        for(Vertex v : graph.vertices.values()){
+            v.setVisited(false);
+            v.setPrev(null);
+            v.setDist(INFINITY);
+            if(v == graph.vertices.get(start)){
+                v.setDist(0);
+            }
+            pq.insert(v);
+        }
+        while (!(pq.isEmpty())){
+            Vertex u= pq.extractElement();
+            u.setVisited(true);
+            for (Edge k: u.getNeighbors()){
+                Vertex v = k.getTo();
+                if(v.getVisited() == false && v.getDist() > u.getDist() + k.getWeight()){
+                    v.setDist(u.getDist() + k.getWeight());
+                    v.setPrev(u);
+                    pq.update(v.getId(),v.getDist());
                 }
             }
         }
+        return pq;
     }
 
-    public List<Vertex> getShortestPathTo(Vertex targetVerte) {
-        List<Vertex> path = new ArrayList<>();
-
-        for (Vertex vertex = targetVerte; vertex != null; vertex = vertex.getPreviosVertex()) {
-            path.add(vertex);
-        }
-
-        Collections.reverse(path);
-        return path;
-    }
 }

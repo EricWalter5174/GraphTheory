@@ -1,59 +1,71 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Vertex implements Comparable<Vertex> {
+public class Vertex {
     private int id;
-    private List<Edge> edges;
+    private List<Edge> neighbors;
     private boolean visited;
-    private Vertex previosVertex;
-    private double minDistance = Double.MAX_VALUE;
+    private Vertex prev;
+    private double dist;
 
-    public Vertex(int id) {
+
+    public Vertex(int id){
         this.id = id;
-        this.edges = new ArrayList<>();
     }
 
-    public void addNeighbour(Edge edge) {
-        this.edges.add(edge);
+    public Vertex(int id, double d) {
+        dist = d; // INFINITY
+        prev = null;
+        visited = false;
+        neighbors = new ArrayList<>();
     }
 
-    public List<Edge> getEdges() {
-        return edges;
+    public int getId() {
+        return id;
     }
 
-    public void setEdges(List<Edge> edges) {
-        this.edges = edges;
+    public List<Edge> getNeighbors() {
+        return neighbors;
     }
 
-    public boolean isVisited() {
+    public boolean getVisited() {
         return visited;
+    }
+
+    public Vertex getPrev() {
+        return prev;
+    }
+
+    public double getDist() {
+        return dist;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNeighbors(List<Edge> neighbors) {
+        this.neighbors = neighbors;
     }
 
     public void setVisited(boolean visited) {
         this.visited = visited;
     }
 
-    public Vertex getPreviosVertex() {
-        return previosVertex;
+    public void setPrev(Vertex prev) {
+        this.prev = prev;
     }
 
-    public void setPreviosVertex(Vertex previosVertex) {
-        this.previosVertex = previosVertex;
+    public void setDist(double dist) {
+        this.dist = dist;
     }
 
-    public double getMinDistance() {
-        return minDistance;
-    }
-
-    public void setMinDistance(double minDistance) {
-        this.minDistance = minDistance;
-    }
-
-    public int getId(){
-        return id;
-    }
     @Override
-    public int compareTo(Vertex otherVertex) {
-        return Double.compare(this.minDistance, otherVertex.minDistance);
+    public String toString() {
+        return "Vertex{" +
+                "id=" + id +
+                ", prev=" + prev +
+                ", dist=" + dist +
+                '}';
     }
 }
