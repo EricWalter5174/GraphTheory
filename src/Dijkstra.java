@@ -9,6 +9,7 @@ public class Dijkstra {
             v.setVisited(false);
             v.setPrev(null);
             v.setDist(INFINITY);
+
             if(v.getId() == 0){
                 v.setDist(0);
             }
@@ -19,7 +20,7 @@ public class Dijkstra {
             u.setVisited(true);
             for (Edge e : u.getNeighbors()){
                 Vertex v = e.getTo();
-                if(v.getVisited() == false && v.getDist() > u.getDist() + e.getWeight()){
+                if(!v.getVisited() && v.getDist() > u.getDist() + e.getWeight()){
                     v.setDist(u.getDist() + e.getWeight());
                     v.setPrev(u);
                     pq.update(v.getId(),v.getDist());

@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.PriorityQueue;
@@ -65,10 +66,10 @@ public class Kruskal {
         double temp = 0.0;
         for (Edge edge : edgeList) {
             temp += edge.getWeight();
-            System.out.print("(" + edge.getFrom().getId() +
-                    "," + edge.getTo().getId() + ") ");
+            System.out.println("(" + edge.getFrom().getId() +
+                    "," + edge.getTo().getId() + ")");
         }
-        System.out.println("\n");
-        System.out.println("Weight of the MST: " + temp);
+        System.out.printf("Weight of the MST: %.2f %n", temp); // rounds down to 2 decimals
     }
+
 }
