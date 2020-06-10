@@ -1,9 +1,15 @@
+import java.security.DigestException;
 
 public class Dijkstra {
 
     public static final double INFINITY = Double.MAX_VALUE;
+    DiGraph graph;
 
-    public MinPQ getShortestPath(DiGraph graph){
+    public Dijkstra(DiGraph graph){
+        this.graph = graph;
+    }
+
+    public void getShortestPath(){
         MinPQ pq = new MinPQ(graph.getNumberOfVertices());
         for(Vertex v : graph.vertexMap.values()){
             v.setVisited(false);
@@ -27,7 +33,23 @@ public class Dijkstra {
                 }
             }
         }
-        return pq;
     }
+
+    public void printPath(Vertex dest) {
+        if(!graph.vertexMap.containsKey(dest.getId())) {
+            System.out.println("Destination does not exist");
+            return;
+        }
+        Vertex x = graph.vertexMap.get(dest.getId());
+        double sDist = x.getDist();
+        while(x.getPrev() != null) {
+            System.out.print(x.getId() + "(" + x.getDist()+")<------(" + x.getPrev().getDist() + ")");
+            x = x.getPrev();
+            System.out.println(x.getId());
+        }
+        System.out.println(("Total length: " + sDist));
+
+    }
+
 
 }

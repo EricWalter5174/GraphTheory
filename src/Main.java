@@ -72,8 +72,9 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("Dijkstra's algorithm (directed graph):\n");
-                    Dijkstra dijkstra = new Dijkstra();
-                    System.out.println(dijkstra.getShortestPath(diGraph).toString());
+                    Dijkstra dijkstra = new Dijkstra(diGraph);
+                    dijkstra.getShortestPath();
+                    dijkstra.printPath(diGraph.vertexMap.get(diGraph.numberOfVertices-1));
                     break;
                 case 9:
                     userInput = exit;
