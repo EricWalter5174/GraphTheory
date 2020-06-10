@@ -24,10 +24,10 @@ public class Dijkstra {
         while (!pq.isEmpty()){
             Vertex u = pq.extractElement();
             u.setVisited(true);
-            for (Edge e : u.getNeighbors()){
-                Vertex v = e.getTo();
-                if(!v.getVisited() && v.getDist() > u.getDist() + e.getWeight()){
-                    v.setDist(u.getDist() + e.getWeight());
+            for (Edge edges : u.getNeighbors()){
+                Vertex v = edges.getTo();
+                if(!v.getVisited() && v.getDist() > u.getDist() + edges.getWeight()){
+                    v.setDist(u.getDist() + edges.getWeight());
                     v.setPrev(u);
                     pq.update(v.getId(),v.getDist());
                 }

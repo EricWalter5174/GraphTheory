@@ -74,7 +74,9 @@ public class Main {
                     System.out.println("Dijkstra's algorithm (directed graph):\n");
                     Dijkstra dijkstra = new Dijkstra(diGraph);
                     dijkstra.getShortestPath();
-                    dijkstra.printPath(diGraph.vertexMap.get(diGraph.numberOfVertices-1));
+                    System.out.println("Enter Exit Node. The Graph currently contains Vertices 0 (Startnode) - " + (diGraph.getNumberOfVertices()-1) + " (Endnode)");
+                    int tempInput = scanner.nextInt();
+                    dijkstra.printPath(diGraph.vertexMap.get(tempInput));
                     break;
                 case 9:
                     userInput = exit;
