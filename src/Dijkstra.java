@@ -43,7 +43,7 @@ public class Dijkstra {
         Vertex x = graph.vertexMap.get(dest.getId());
         double sDist = x.getDist();
         while(x.getPrev() != null) {
-            System.out.print(x.getId() + "(" + x.getDist()+")<------(" + x.getPrev().getDist() + ")");
+            System.out.print(x.getId() + " (" + x.getDist()+")<------(" + x.getPrev().getDist() + ") ");
             x = x.getPrev();
             System.out.println(x.getId());
         }
